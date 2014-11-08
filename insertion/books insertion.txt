@@ -1,0 +1,40 @@
+
+insert into books values('Junior English part 1',1,4);
+insert into books values('Junior English Part 2',2,5);
+insert into books values('English Language',3,12);
+insert into books values('Fairy tales',4,5);
+insert into books values('story book',5,11);
+insert into books values('Combine literature and grammar part 1',6,15);
+insert into books values('Combine literature and grammar part 2',7,17);
+insert into books values('Combine literature and grammar part 3',8,16);
+insert into books values('Combine literature and grammar part 4',9,18);
+insert into books values('Combine literature and grammar part 5',10,20);
+insert into books values('Basic Maths 1',1,2);
+insert into books values('Basic Maths 2',2,4);
+insert into books values('Basic Maths 3',3,6);
+insert into books values('Mathematics 1',4,10);
+insert into books values('Mathematics 2',5,10);
+insert into books values('Quadratic',6,12);
+insert into books values('Trignometry 1',7,14);
+insert into books values('Trignometry 2',8,16);
+insert into books values('Geometry',9,18);
+insert into books values('Calculas',10,20);
+insert into books values('Hindi 1',1,1);
+insert into books values('Hindi 2',2,3);
+insert into books values('vyakaran 1',3,5);
+insert into books values('vyakaran 2',4,7);
+insert into books values('ramayan and mahabharat',5,8);
+insert into books values('kavita and kahaniya',6,10);
+insert into books values('vyakaran 3',7,11);
+insert into books values('hindi sahitya 1',8,12);
+insert into books values('hindi sahitya 2',9,12);
+insert into books values('hindi sahitya and vyakaran',10,14);
+
+insert into books values('Social Science',5,10);
+insert into books values('Ancient History 1',6,14);
+insert into books values('Ancient History 2',7,14);
+insert into books values('Medival History',8,15);
+insert into books values('Freedom Fighters',9,10);
+insert into books values('Economics',10,10);
+
+

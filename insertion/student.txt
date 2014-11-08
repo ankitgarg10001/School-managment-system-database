@@ -1,0 +1,87 @@
+create table student(
+id number(4) primary key,
+name varchar2(20)
+fname varchar2(20),
+class number(2) not null,
+sid number(4) references school(sid),
+address varchar2(40),
+foreign key (name,fname,address) references child(name,fname,address));
+
+
+
+select * from students;
+
+
+insert into student values(301,'amit',9,1232,'sitaram lodha','f76 hera nagar,handvi');
+insert into student values(302,'asha',10,1231,'sitaram lodha','f76 hera nagar,handvi');
+insert into student values(303,'manish',7,1234,'sitaram lodha','f76 hera nagar,handvi');
+insert into student values(304,'kunal',10,1231,'maniram gandhi','c17 gandhi nagar,handvi');
+insert into student values(305,'isha',9,1232,'maniram gandhi','c17 gandhi nagar,handvi');
+
+insert into student values(306,'shruti',7,1234,'maniram gandhi','c17 gandhi nagar,handvi');
+insert into student values(307,'jay',7,1234,'abhay ghosla','n4 kholi 431,hirapur');
+insert into student values(308,'sanjay',5,1236,'abhay ghosla','n4 kholi 431,hirapur');
+insert into student values(309,'ajay',7,1234,'abhay ghosla','n4 kholi 431,hirapur');
+insert into student values(310,'suraj',8,1233,'jay mehta','mehta niwas railway station ke pass sitapur');
+
+insert into student values(311,'sumit',10,1231,'mayank mittal','house no.13,dhobi ghat,bilal');
+insert into student values(312,'gita',9,1232,'prateek singh','house no.15,dhobi ghat,bilal');
+insert into student values(313,'ajit',7,1234,'jp gupta','e19 bus stand ke pass,bilal');
+insert into student values(314,'sumit',4,1234,'mangni ram mehta','mangni house paharganj,tikamgarh');
+insert into student values(315,'aditi',2,1238,'mangni ram mehta','mangni house paharganj,tikamgarh');
+
+insert into student values(316,'prachi',10,1231,'amit chatwani','i9 near police station,bhim');
+insert into student values(317,'vaibhav',8,1233,'amit chatwani','i9 near police station,bhim');
+insert into student values(318,'shivam',7,1234,'vaibhav banga','banga niwas railway station ke pass,mertha');
+insert into student values(319,'sunit',4,1234,'vaibhav banga','banga niwas railway station ke pass,mertha');
+insert into student values(320,'abhay',2,1238,'ram lal','sitaram niwas sabji mandi,mertha');
+
+insert into student values(321,'ankit',9,1232,'ram lal','sitaram niwas sabji mandi,mertha');
+insert into student values(322,'neha',8,1233,'rakesh lodha','house no.14,dhobi ghat,bhim');
+insert into student values(323,'ajay',6,1235,'rakesh lodha','house no.14,dhobi ghat,bhim');
+insert into student values(324,'shivansh',4,1234,'sitaram  mittal','sabji mandi,near pipal tree,nasirabad');
+insert into student values(325,'aviral',9,1232,'sitaram  mittal','sabji mandi,near pipal tree,nasirabad');
+
+insert into student values(326,'shivankit',7,1234,'mayank meena','kholi no. 12,nayi basti,dudu');
+insert into student values(327,'harshit',5,1236,'mayank meena','kholi no. 12,nayi basti,dudu');
+insert into student values(328,'vineet',6,1235,'Saransh bheteja','a-13,near old cinema hall,kekri');
+insert into student values(329,'lalit',3,1237,'Saransh bheteja','a-13,near old cinema hall,kekri');
+insert into student values(330,'rohit',9,1232,'ankit verma','d-1,majid ke pass,aarai');
+
+insert into student values(331,'varun',8,1233,'ankit verma','d-1,majid ke pass,aarai');
+insert into student values(332,'tani',7,1234,'Ruchin Bindal','b-1,police station ke pass,fatehpur');
+insert into student values(333,'sonali',4,1234,'Ruchin Bindal','b-1,police station ke pass,fatehpur');
+insert into student values(334,'tanvi',3,1237,'Shailabh Goyal','kholi no. 17,purani basti,mertha');
+insert into student values(335,'gautam',10,1231,'Shailabh Goyal','kholi no. 17,purani basti,mertha');
+
+insert into student values(336,'ankit',8,1233,'vaibhav gupta','house no.12,dhobi ghat,nasirabad');
+insert into student values(337,'ashish',7,1234,'vaibhav gupta','house no.12,dhobi ghat,nasirabad');
+insert into student values(338,'anuj',6,1235,'manish Kumar','c10,near govt.hospital,nasirabad');
+insert into student values(339,'tushar',4,1236,'manish Kumar','c10,near govt.hospital,nasirabad');
+insert into student values(340,'anurag',9,1232,'sandeep sharma','d13,sabji mandi,nasirabad');
+
+insert into student values(341,'stuti',8,1233,'sandeep sharma','d13,sabji mandi,nasirabad');
+insert into student values(342,'riya',6,1235,'varun mehta','kholi no.48,baba ramdas basti,nasirabad');
+insert into student values(343,'apoorv',3,1237,'varun mehta','kholi no.48,baba ramdas basti,nasirabad');
+insert into student values(344,'shivam',9,1232,'Rajesh gujar','house no.16,near dhobi ghat,Kekri');
+insert into student values(345,'ramesh',8,1233,'Rajesh gujar','house no.16,near dhobi ghat,Kekri');
+
+insert into student values(346,'siddarth',7,1234,'avinash meena','f13,dhan mandi,Kekri');
+insert into student values(347,'ankit',6,1235,'avinash meena','f13,dhan mandi,Kekri');
+insert into student values(348,'paridhi',3,1237,'amit shata','shata niwas,sindhi colony,Kekri');
+insert into student values(350,'komal',7,1234,'ajay goyal','house no.19,derasiriya gali,Kekri');
+
+insert into student values(351,'aditi',5,1236,'ajay goyal','house no.19,derasiriya gali,Kekri');
+insert into student values(352,'ankit',2,1238,'abhinav daga','daga niwas,kholi no. 420,purani mandi,dudu');
+insert into student values(353,'amit',9,1232,'abhinav daga','daga niwas,kholi no. 420,purani mandi,dudu');
+insert into student values(354,'nikhil',7,1234,'Harsh Agarwal','house no.23,dhobi ghat,dudu');
+
+insert into student values(355,'saurabh',4,1234,'Harsh Agarwal','house no.23,dhobi ghat,dudu');
+insert into student values(356,'sudhanshu',2,1238,'Kunal Nigam','e1,diwan nagar,dudu');
+insert into student values(357,'dinesh',10,1231,'Kunal Nigam','e1,diwan nagar,dudu');
+insert into student values(358,'kamal',8,1233,'Ankit Sharma','sharma niwas,near purana kila,dudu');
+insert into student values(359,'yogesh',8,1233,'Ankit Sharma','sharma niwas,near purana kila,dudu');
+
+insert into student values(360,'avirudh',5,1236,'abhay deol','e1,diwan nagar,dudu');
+insert into student values(361,'somil',4,1234,'abhay deol','e1,diwan nagar,dudu');
+insert into student values(362,'jivesh',2,1235,'kunal lodha','sharma niwas,near purana kila,dudu');

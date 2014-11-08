@@ -1,0 +1,71 @@
+insert into child values('amit','f76 hera nagar,handvi','sitaram lodha','19-aug-1998','m',NULL);
+insert into child values('asha','f76 hera nagar,handvi','sitaram lodha','29-sep-1995','f',NULL);
+insert into child values('manish','f76 hera nagar,handvi','sitaram lodha','01-jan-2002','m',NULL);
+insert into child values('kunal','c17 gandhi nagar,handvi','maniram gandhi','21-feb-1993','m',NULL);
+insert into child values('isha','c17 gandhi nagar,handvi','maniram gandhi','19-mar-1997','f',NULL);
+insert into child values('shruti','c17 gandhi nagar,handvi','maniram gandhi','29-dec-2001','f',NULL);
+insert into child values('jay','n4 kholi 431,hirapur','abhay ghosla','19-oct-2001','m',NULL);
+insert into child values('sanjay','n4 kholi 431,hirapur','abhay ghosla','19-aug-2004','m',NULL);
+insert into child values('ajay','n4 kholi 431,hirapur','abhay ghosla','21-apr-2007','m',NULL);
+insert into child values('suraj','mehta niwas railway station ke pass sitapur','jay mehta','08-may-1999','m',NULL);
+
+insert into child values('sumit','house no.13,dhobi ghat,bilal','mayank mittal','15-aug-1995','m',NULL);
+insert into child values('gita','house no.15,dhobi ghat,bilal','prateek singh','17-jan-1998','f',NULL);
+insert into child values('ajit','e19 bus stand ke pass,bilal','jp gupta','19-feb-2001','m',NULL);
+insert into child values('sumit','mangni house paharganj,tikamgarh','mangni ram mehta','29-mar-2005','m',NULL);
+insert into child values('aditi','mangni house paharganj,tikamgarh','mangni ram mehta','20-apr-2007','f',NULL);
+insert into child values('prachi','i9 near police station,bhim','amit chatwani','21-may-1996','f',NULL);
+insert into child values('vaibhav','i9 near police station,bhim','amit chatwani','02-june-1999','m',NULL);
+insert into child values('shivam','banga niwas railway station ke pass,mertha','vaibhav banga','05-july-2002','m',NULL);
+insert into child values('sunit','banga niwas railway station ke pass,mertha','vaibhav banga','07-aug-2005','m',NULL);
+
+insert into child values('abhay','sitaram niwas sabji mandi,mertha','ram lal','22-sep-2007','m',NULL);
+insert into child values('ankit','sitaram niwas sabji mandi,mertha','ram lal','23-oct-1997','m',NULL);
+insert into child values('neha','house no.14,dhobi ghat,bhim','rakesh lodha','24-nov-2000','f',NULL);
+insert into child values('ajay','house no.14,dhobi ghat,bhim','rakesh lodha','25-aug-2003','m',NULL);
+insert into child values('shivansh','sabji mandi,near pipal tree,nasirabad','sitaram  mittal','28-dec-2005','m',NULL);
+
+insert into child values('aviral','sabji mandi,near pipal tree,nasirabad','sitaram  mittal','19-jan-1998','m',NULL);
+insert into child values('shivankit','kholi no. 12,nayi basti,dudu','mayank meena','08-feb-2001','m',NULL);
+insert into child values('harshit','kholi no. 12,nayi basti,dudu','mayank meena','09-mar-2004','m',NULL);
+insert into child values('vineet','a-13,near old cinema hall,kekri','Saransh bheteja','10-apr-2003','m',NULL);
+
+insert into child values('lalit','a-13,near old cinema hall,kekri','Saransh bheteja','11-may-2006','m',NULL);
+insert into child values('rohit','d-1,majid ke pass,aarai','ankit verma','29-june-1997','m',NULL);
+insert into child values('varun','d-1,majid ke pass,aarai','ankit verma','23-july-2000','m',NULL);
+insert into child values('tani','b-1,police station ke pass,fatehpur','Ruchin Bindal','13-aug-2002','f',NULL);
+insert into child values('sonali','b-1,police station ke pass,fatehpur','Ruchin Bindal','16-sep-2005','f',NULL);
+
+insert into child values('tanvi','kholi no. 17,purani basti,mertha','Shailabh Goyal','07-oct-2006','m',NULL);
+insert into child values('gautam','kholi no. 17,purani basti,mertha','Shailabh Goyal','09-nov-1996','m',NULL);
+insert into child values('ankit','house no.12,dhobi ghat,nasirabad','vaibhav gupta','12-dec-1999','m',NULL);
+insert into child values('ashish','house no.12,dhobi ghat,nasirabad','vaibhav gupta','16-jan-2002','m',NULL);
+
+insert into child values('anuj','c10,near govt.hospital,nasirabad','manish Kumar','16-dec-2003','m',NULL);
+insert into child values('tushar','c10,near govt.hospital,nasirabad','manish Kumar','18-feb-2005','m',NULL);
+insert into child values('anurag','d13,sabji mandi,nasirabad','sandeep sharma','09-mar-1995','m',NULL);
+insert into child values('stuti','d13,sabji mandi,nasirabad','sandeep sharma','13-apr-1998','f',NULL);
+insert into child values('riya','kholi no.48,baba ramdas basti,nasirabad','varun mehta','20-may-2000','f',NULL);
+
+insert into child values('apoorv','kholi no.48,baba ramdas basti,nasirabad','varun mehta','05-june-2003','m',NULL);
+insert into child values('shivam','house no.16,near dhobi ghat,Kekri','Rajesh gujar','14-july-2006','m',NULL);
+insert into child values('ramesh','house no.16,near dhobi ghat,Kekri','Rajesh gujar','16-aug-1998','m',NULL);
+insert into child values('siddarth','f13,dhan mandi,Kekri','avinash meena','20-sep-1999','m',NULL);
+insert into child values('ankit','f13,dhan mandi,Kekri','avinash meena','21-oct-2002','m',NULL);
+
+insert into child values('komal','house no.19,derasiriya gali,Kekri','ajay goyal','01-jan-1999','f',NULL);
+insert into child values('aditi','house no.19,derasiriya gali,Kekri','ajay goyal','02-feb-2002','f',NULL);
+insert into child values('ankit','daga niwas,kholi no. 420,purani mandi,dudu','abhinav daga','03-mar-2004','m',NULL);
+
+insert into child values('amit','daga niwas,kholi no. 420,purani mandi,dudu','abhinav daga','15-apr-2007','m',NULL);
+insert into child values('nikhil','house no.23,dhobi ghat,dudu','Harsh Agarwal','20-may-1998','m',NULL);
+insert into child values('saurabh','house no.23,dhobi ghat,dudu','Harsh Agarwal','24-june-2001','m',NULL);
+insert into child values('sudhanshu','e1,diwan nagar,dudu','Kunal Nigam','28-july-2005','m',NULL);
+
+insert into child values('dinesh','e1,diwan nagar,dudu','Kunal Nigam','30-aug-1992','m',NULL);
+insert into child values('kamal','sharma niwas,near purana kila,dudu','Ankit Sharma','12-sep-1996','m',NULL);
+insert into child values('yogesh','sharma niwas,near purana kila,dudu','Ankit Sharma','19-oct-1999','m',NULL);
+insert into child values('avirudh','e1,diwan nagar,dudu','abhay deol','06-nov-2000','m',NULL);
+insert into child values('somil','e1,diwan nagar,dudu','abhay deol','10-dec-2004','m',NULL);
+
+insert into child values('jivesh','sharma niwas,near purana kila,dudu','kunal lodha','01-jan-2005','m',NULL);

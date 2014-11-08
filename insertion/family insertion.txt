@@ -1,0 +1,98 @@
+
+INSERT INTO family
+VALUES('sitaram lodha','vernica lodha','f76 hera nagar,handvi',700,201); 
+
+INSERT INTO family
+VALUES('maniram gandhi','monica gandhi','c17 gandhi nagar,handvi',900,202); 
+
+INSERT INTO family
+VALUES('abhay ghosla','priyanka ghosla','n4 kholi 431,hirapur',1500,203); 
+
+INSERT INTO family
+VALUES('jay mehta','shivani mehta','mehta niwas railway station ke pass sitapur',1200,204); 
+
+INSERT INTO family
+VALUES('mayank mittal','neha mittal','house no.13,dhobi ghat,bilal',1300,201); 
+
+INSERT INTO family
+VALUES('prateek singh','vinita singh','house no.15,dhobi ghat,bilal',700,202); 
+
+INSERT INTO family
+VALUES('jp gupta','aruna gupta','e19 bus stand ke pass,bilal',1400,203); 
+
+INSERT INTO family
+VALUES('mangni ram mehta','shefali mehta','mangni house paharganj,tikamgarh',900,204); 
+
+INSERT INTO family
+VALUES('amit chatwani','manisha chatwani','i9 near police station,bhim',1100,201); 
+
+INSERT INTO family
+VALUES('vaibhav banga','surbhi banga','banga niwas railway station ke pass,mertha',750,202); 
+
+INSERT INTO family
+VALUES('ram lal','sita','sitaram niwas sabji mandi,mertha',900,203); 
+
+INSERT INTO family
+VALUES('rakesh lodha','kamini lodha','house no.14,dhobi ghat,bhim',600,204);
+
+INSERT INTO family
+VALUES('sitaram  mittal','sukriti mittal','sabji mandi,near pipal tree,nasirabad',900,201);
+
+INSERT INTO family
+VALUES('mayank meena','sonali meena','kholi no. 12,nayi basti,dudu',1200,202);
+
+INSERT INTO family
+VALUES('Saransh bheteja','shefali bheteja','a-13,near old cinema hall,kekri',700,203);
+
+INSERT INTO family
+VALUES('ankit verma','Honey verma','d-1,majid ke pass,aarai',750,204);
+
+INSERT INTO family
+VALUES('Ruchin Bindal','Ritu Bindal','b-1,police station ke pass,fatehpur',900,201);
+
+INSERT INTO family
+VALUES('Shailabh Goyal','Prachi Goyal','kholi no. 17,purani basti,mertha',1000,202);
+
+INSERT INTO family
+VALUES('vaibhav gupta','Prachi gupta','house no.12,dhobi ghat,nasirabad',1100,203);
+
+INSERT INTO family
+VALUES('manish Kumar','purva manish kumar','c10,near govt.hospital,nasirabad',1200,204);
+
+INSERT INTO family
+VALUES('sandeep sharma','tanu sharma','d13,sabji mandi,nasirabad',600,201);
+
+INSERT INTO family
+VALUES('varun mehta','mamta mehta','kholi no.48,baba ramdas basti,nasirabad',1300,202);
+
+INSERT INTO family
+VALUES('Rajesh gujar','Manisha gujar','house no.16,near dhobi ghat,Kekri',800,203);
+
+INSERT INTO family
+VALUES('avinash meena','neha meena','f13,dhan mandi,Kekri',850,204);
+
+INSERT INTO family
+VALUES('amit shata','vernica shata','shata niwas,sindhi colony,Kekri',1300,201);
+
+INSERT INTO family
+VALUES('ajay goyal','sukriti goyal','house no.19,derasiriya gali,Kekri',1400,202);
+
+INSERT INTO family
+VALUES('abhinav daga','prachi daga','daga niwas,kholi no. 420,purani mandi,dudu',1000,203);
+
+INSERT INTO family
+VALUES('Harsh Agarwal','Meenal Agarwal','house no.23,dhobi ghat,dudu',650,204);
+
+INSERT INTO family
+VALUES('Kunal Nigam','Preeti Nigam','e1,diwan nagar,dudu',900,201);
+
+INSERT INTO family
+VALUES('Ankit Sharma','anjali sharma','sharma niwas,near purana kila,dudu',700,202);
+
+INSERT INTO family
+VALUES('abhay deol','shital deol','e1,diwan nagar,dudu',900,203);
+
+INSERT INTO family
+VALUES('kunal lodha','shrmila lodha','sharma niwas,near purana kila,dudu',700,204);
+
+

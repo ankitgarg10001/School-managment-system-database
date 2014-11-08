@@ -1,0 +1,10 @@
+
+insert into school values(20,'rajiv gandhi memorial school',1231,'jay singh rathor',201);
+insert into school values(32,'garib rath school',1232,'rajiv singh',202);
+insert into school values(25,'gyan vihar',1233,'prateek gupta',203);
+insert into school values(21,'maa bharti school',1234,'amit mishra',204);
+insert into school values(15,'vidhya niketan',1235,'apoorv agarwal',201);
+insert into school values(16,'maa saraswati school',1236,'mayank meena',202);
+insert into school values(20,'Mahatama gadhi memorial school',1237,'ajay singh',203);
+insert into school values(25,'sri niketan',1238,'veer vijay singh',204);
+ 

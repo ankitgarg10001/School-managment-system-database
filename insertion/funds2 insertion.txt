@@ -1,0 +1,9 @@
+
+insert into funds2 values(1231,201,45000,23000);
+insert into funds2 values(1232,201,55000,20000);
+insert into funds2 values(1233,202,50000,27000);
+insert into funds2 values(1234,203,45000,25000);
+insert into funds2 values(1235,203,53000,20000);
+insert into funds2 values(1236,203,52000,21000);
+insert into funds2 values(1237,204,48000,26000);
+insert into funds2 values(1238,204,50000,30000);

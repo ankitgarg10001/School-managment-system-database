@@ -1,0 +1,163 @@
+1->min age of student in school must be greater than 3
+
+
+
+CREATE OR REPLACE TRIGGER min_age
+BEFORE INSERT ON student
+FOR EACH ROW
+declare
+ag number(2);
+begin
+select age into ag from child where name=:new.name and fname=:new.fname and address=:new.address;
+if(ag < 3) then
+RAISE_APPLICATION_ERROR(-20000,'age should be greater than 3'); 
+end if;
+END;
+/
+
+
+2->family whose children are studying must have maximum monthly income of 2000
+
+CREATE OR REPLACE TRIGGER max_sal
+BEFORE INSERT ON family
+FOR EACH ROW
+begin
+if(:new.income>2000) then
+RAISE_APPLICATION_ERROR(-20001,'family above poverty line'); 
+end if;
+END;
+/
+
+
+
+
+3->keeps track on funds given to a district and distributed among school of that district
+
+CREATE OR REPLACE TRIGGER max_fund
+BEFORE INSERT ON funds2
+FOR EACH ROW
+declare
+tot number(8,2);
+tmoney number(8,2);
+begin
+select sum(fund_given) into tot from funds2 where did=:new.did;
+tot := tot+ :new.fund_given;
+select money into tmoney from funds where did=:new.did;
+if(tot > tmoney) then
+RAISE_APPLICATION_ERROR(-20002,'fund limit reached'); 
+end if;
+END;
+/
+
+
+4-> deletes students, funds, teachers of a school before deletion of school
+
+
+
+CREATE OR REPLACE TRIGGER del_school
+BEFORE DELETE ON school
+FOR EACH ROW
+when(old.sid is not null)
+begin
+delete from student where sid=:old.sid;
+delete from funds2 where sid=:old.sid;
+delete from teachers where sid=:old.sid;
+END;
+/
+
+
+5->deletes schools, funds of district in case district is deleted
+
+
+
+CREATE OR REPLACE TRIGGER del_district
+BEFORE DELETE ON map
+FOR EACH ROW
+when(old.did is not null)
+begin
+delete from school where did=:old.did;
+delete from funds where did=:old.did;
+END;
+/
+
+
+
+
+6->keeps track on expenditure of school,ie expenditure + total teachers salary must be less than funds given to school
+
+CREATE OR REPLACE TRIGGER expenditr
+BEFORE INSERT ON funds2
+FOR EACH ROW
+declare
+tot number(8,2);
+begin
+select sum(salary) into tot from teachers where sid=:new.sid;
+tot:= tot + :new.expenditure;
+if(:new.fund_given<tot) then
+RAISE_APPLICATION_ERROR(-20003,'itne paise me itna ni milea :D'); 
+end if;
+END;
+/
+
+
+
+
+
+7->keeps track on expenditure of school,ie expenditure + total teachers salary must be less than funds given to school
+
+
+CREATE OR REPLACE TRIGGER new_tchr
+BEFORE INSERT ON teachers
+FOR EACH ROW
+declare
+tot number(8,2);
+exp number(8,2);
+begin
+select sum(salary) into tot from teachers where sid=:new.sid;
+tot:= tot + :new.salary;
+select expenditure into exp from funds2 where sid=:new.sid;
+tot:= tot + exp;
+select fund_given into exp from funds2 where sid=:new.sid;
+dbms_output.put_line(exp||'    '||tot);
+if(exp<tot) then
+RAISE_APPLICATION_ERROR(-20004,'Maximum fund limit reached..'); 
+end if;
+END;
+/
+
+
+
+
+
+
+
+
+
+8-> inserts child's age automatically on insertion on table child
+
+CREATE OR REPLACE TRIGGER child_age
+    BEFORE INSERT OR UPDATE ON child
+    FOR EACH ROW
+BEGIN
+    IF (:NEW.dob<SYSDATE) THEN
+        :NEW.age := floor((sysdate-:NEW.dob)/365);
+    ELSE
+    RAISE_APPLICATION_ERROR(-20005,'dob must be before'||sysdate);
+    END IF;
+END;
+/
+
+
+9-> dellets all students and children of a family in case of deletion of family
+
+
+
+
+CREATE OR REPLACE TRIGGER del_family
+BEFORE DELETE ON family
+FOR EACH ROW
+begin
+delete from student where fname=:old.fname and address=:old.address;
+delete from child where fname=:old.fname and address=:old.address;
+END;
+/

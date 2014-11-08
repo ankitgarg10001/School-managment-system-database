@@ -1,0 +1,120 @@
+select * from map;
+
+select * from family;
+
+select * from child;
+
+select * from school;
+
+select * from student;
+
+select * from funds;
+
+select * from funds2;
+
+select * from teachers;
+
+
+
+
+
+
+1->total schools in a state(state wise grouping)
+
+
+select count(sid) as no_of_schools , m.state from map m, school s
+where m.did=s.did
+group by state;
+
+2->how much fund given to which school
+
+
+select school.sid, school.sname, funds2.fund_given from funds2, school where funds2.sid=school.sid
+order by sid;
+
+
+
+3-> Create a PL/SQL procedure that displays the count of total tuples in family table.
+
+
+select count(*) from family;
+
+
+4-> principals having work exp>12
+select tname
+from teachers
+where
+post='Principal'
+and work_exp>12;
+
+5->name of mothers having more than 2 children
+select f.mname, count(c.name) as no_f_child
+from family f,child c
+where f.fname=c.fname
+and f.address=c.address
+group by mname
+having count(c.name)>2;
+
+6->show all junior teacher's name
+select t.tname
+from teachers t,school s
+where
+t.sid=s.sid
+and post='Junior Teacher';
+
+7->select all districts n show their id's
+
+select district, did from map;
+
+
+8-> all children in normal study age(should definately study)
+select c.name
+from child c
+where
+age between 3 and 18;
+
+
+9-> count families with income less than 5000
+
+select count (*) from family where income<1000;
+
+
+
+10->display no of child of each family
+
+select fname, address ,count(*) as no_f_child from child group by fname, address order by fname, address;
+
+
+11-> total sum of salary's of teachers school wise
+
+select sid, sum(salary) as tot_sal from teachers group by sid;
+
+ 
+
+12-> total sum of teachers school wise
+
+select sid, count(tid) as tot_tech from teachers group by sid;
+
+
+
+13->select teachers with more than avg salary
+select tname from teachers where salary>(select avg(salary) from teachers);
+
+
+
+14-> display teachers having salary greater than average salary and by how much
+
+select post, salary-(select avg(salary) from teachers) from teachers where salary>(select avg(salary) from teachers);
+
+
+15->
+
+
+select c.name from child c, family f where c.fname=f.fname and f.address=c.address order by c.name desc;
+
+
+16-> fathers having 2 children
+
+select f.fname,count(c.name) from child c , family f where c.address=f.address and c.fname=f.fname group by f.fname having count(c.name)=2;
+
+

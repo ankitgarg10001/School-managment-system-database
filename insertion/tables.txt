@@ -1,0 +1,113 @@
+create table map(
+state varchar2(20) not null,
+district varchar2(20) not null,
+did number(3) primary key);
+
+
+create table family(
+fname varchar2(20),
+mname varchar2(20),
+address varchar2(50),
+income number(9,2),
+did number(3) references map(did),
+primary key(fname,address));
+
+create table child(
+name varchar2(20),
+address varchar2(50),
+fname varchar2(20),
+dob date,
+sex char,
+age number(2),
+primary key(name,fname,address),
+foreign key (fname,address) references family(fname,address));
+
+
+
+
+create table school(
+tseats number(5) not null,
+sname varchar2(30),
+sid number(4) primary key,
+pname varchar2(20) not null,
+did number(3) references map(did));
+
+
+
+create table student(
+id number(4) primary key,
+name varchar2(20),
+class number(2) not null,
+sid number(4) references school(sid),
+fname varchar2(20),
+address varchar2(50),
+foreign key (name,fname,address) references child(name,fname,address));
+
+
+create table funds(
+did number(3) references map(did),
+money number(8,2) not null,
+nos number(2),
+primary key(did));
+
+
+create table funds2
+(
+sid number(4) references school(sid),
+did number(3) references map(did),
+fund_given number(8,2) not null,
+expenditure number(8,2) not null,
+primary key(sid));
+
+
+create table teachers(
+tname varchar2(20),
+tid number(4) primary key,
+post varchar2(20) not null,
+salary number(8,2),
+sid number(4) references school(sid),
+address varchar2(50) not null,
+work_exp number(2));
+
+
+----------------------------------------------------------------------
+
+drop table teachers;
+drop table funds2;
+drop table funds;
+drop table student;
+drop table child;
+drop table family;
+drop table school;
+drop table map;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

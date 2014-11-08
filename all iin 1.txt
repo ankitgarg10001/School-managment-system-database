@@ -1,0 +1,655 @@
+DELIMITER @@
+CREATE OR REPLACE function PROJECT.t_count (dist in number)
+return number
+is
+cnt number ;
+begin
+select count(*) into cnt from school where did=dist;
+return cnt;
+exception
+when no_data_found then
+dbms_output.put_line('No data!');
+when too_many_rows then
+dbms_output.put_line('Too many rows!');
+when others then
+dbms_output.put_line('Error!');
+end; @@
+DELIMITER ; 
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE function PROJECT.tot_stu_state(s_name in varchar2)
+return number
+iS
+cursor c1 is
+select did from map where state=s_name;
+n number;
+x number(2);
+begin
+n:=0;
+for a in c1
+loop
+select count(sid) into x from school where did=a.did;
+if(x>0) then
+n:= n + tot_stu_dist(a.did);
+end if;
+end loop;
+return n;
+end; @@
+DELIMITER ; 
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE function PROJECT.tot_stu_school(identity IN NUMBER)
+return number
+iS
+n number;
+BEGIN
+select sid into n from school where sid = identity;
+select count(id) into n from student where sid=identity;
+return n;
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('SCHOOL with sid '||identity||' does not exist..');
+END; @@
+DELIMITER ; 
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE function PROJECT.tot_stu_dist_class(identity IN NUMBER,clas in number)
+return number
+iS
+n number;
+BEGIN
+select sid into n from school where did = identity;
+select count(st.id) into n from student st, school s where st.sid=s.sid and s.did=identity and st.class=clas;
+return n ;
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('No school in given district..');
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE function PROJECT.tot_stu_dist(identity IN NUMBER)
+return number
+iS
+n number;
+BEGIN
+select did into n from school where did = identity;
+select count(st.id) into n from student st, school s where st.sid=s.sid and s.did=identity;
+return n;
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('No school in given district..');
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure PROJECT.stu_det(no in number)
+AS
+cursor c1 is
+select st.id, st.name, st.fname, c.dob, c.sex, c.age, s.sname, st.class
+from student st, child c, school s
+where st.sid=s.sid and st.name=c.name and st.fname=c.fname
+and st.id=no;
+stu_nfound exception;
+n number(1);
+BEGIN
+n:=0;
+for p in c1
+LOOP
+n:=1;
+DBMS_OUTPUT.PUT_LINE('Student Id: '||p.id);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student name: '||p.name);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student father name: '||p.fname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student dob: '||p.dob);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student sex: '||p.sex);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student age: '||p.age);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student school name: '||p.sname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student class: '||p.class);
+DBMS_OUTPUT.PUT_LINE('');
+end loop;
+
+if n=0 then
+raise stu_nfound;
+end if;
+exception
+when stu_nfound then
+dbms_output.put_line('no student with given id found');
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure PROJECT.school_det(no number)
+IS
+cursor c1 is
+select s.sid, s.sname, s.pname, d.state, d.district
+from map d, school s
+where d.did=s.did
+and s.sid=no;
+tstu number;
+ttech number;
+fgiven number;
+BEGIN
+select count(*) into tstu from student where sid=no;
+select count(*)into ttech from teachers where sid=no;
+select fund_given into fgiven from funds2 where sid=no;
+for p in c1
+LOOP
+DBMS_OUTPUT.PUT_LINE('School Id: '||p.sid);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School name: '||p.sname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School principal name: '||p.pname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School state: '||p.state);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School district: '||p.district);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('total students in school: '||tstu);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('total teachers in school: '||ttech);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('total funds given to school: '||fgiven);
+DBMS_OUTPUT.PUT_LINE('');
+end loop;
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('NO school found with sid: '||no);
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure
+q_9 (d_name varchar2) is
+
+cursor c is
+select * from map where district=d_name;
+cc c%rowtype;
+
+cursor d is select * from funds2;
+dd d%rowtype;
+
+e1 exception;
+cntr number(1);
+begin
+cntr:=0;
+for cc in c
+loop
+if cc.district=d_name
+then
+for dd in d
+loop
+if dd.did=cc.did
+then	
+cntr:=1;
+dbms_output.put_line('The district '||d_name||' Has a given funds of  '||dd.fund_given||' the expenditure is  '||dd.expenditure);
+end if;
+end loop;
+end if;
+end loop;
+if cntr=0
+then raise e1;
+end if;
+
+exception
+when e1
+then
+dbms_output.put_line('Nothing to display');
+end ; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure PROJECT.q_8 (n in varchar2) is
+cursor c1 is
+select did from map where district=n;
+x funds%rowtype;
+no number(1);
+begin
+no:=0;
+for p in c1
+loop
+select * into x from funds where did=p.did;
+no:=1;
+dbms_output.put_line('District name: '|| n);
+dbms_output.put_line('');
+dbms_output.put_line('District id: '|| x.did);
+dbms_output.put_line('');
+dbms_output.put_line('Money given to district: '||x.money);
+dbms_output.put_line('');
+dbms_output.put_line('no of schools in district: '||x.nos);
+dbms_output.put_line('');
+dbms_output.put_line('-----------------------');
+dbms_output.put_line('');
+end loop;
+if n=0 then
+dbms_output.put_line('NO SUCH DISTRICT FOUND');
+end if;
+end; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure PROJECT.q_6 is
+cursor c is select * from map;
+cc c%rowtype;
+cursor d is select * from school;
+dd  d%rowtype;
+e1 exception;
+begin
+for cc in c
+loop
+for dd in d
+loop
+if cc.did=dd.did   
+then
+if dd.sname='' then raise e1; 
+end if;
+dbms_output.put_line(' name : '||cc.district||' resources : '||dd.sname);
+end if;
+end loop;
+end loop;
+exception
+when e1 then dbms_output.put_line(' wrong input..pls enter the name of the school ');
+end; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure
+q_2(s_id in number) is
+e1 exception;
+cursor c is
+select sname, tseats from school where sid=s_id;
+cnt number(1);
+begin
+cnt:=0;
+for cc in c
+loop
+if (cc.tseats > 0) then
+cnt:=1;
+dbms_output.put_line('Total seats in school '||cc.sname||' are '||cc.tseats);
+end if;
+end loop;
+if (cnt=0) then
+raise e1;
+end if;
+exception
+when e1 then
+dbms_output.put_line('NO school found with sid: '|| s_id);
+end ; @@
+DELIMITER ; 
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure PROJECT.q7( nme in varchar2 )
+is
+cursor c is select * from child where fname=nme;
+begin
+for cc in c
+loop
+dbms_output.put_line('child name: '|| cc.name);
+dbms_output.put_line('');
+dbms_output.put_line('child age: '|| cc.age);
+dbms_output.put_line('');
+dbms_output.put_line('child dob: '|| cc.dob);
+dbms_output.put_line('');
+dbms_output.put_line('child sex: '|| cc.sex);
+dbms_output.put_line('');
+dbms_output.put_line('-----------------------');
+dbms_output.put_line('');
+end loop;
+end; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.new_tchr
+BEFORE INSERT ON teachers
+FOR EACH ROW
+declare
+tot number(8,2);
+exp number(8,2);
+begin
+select sum(salary) into tot from teachers where sid=:new.sid;
+tot:= tot + :new.salary;
+select expenditure into exp from funds2 where sid=:new.sid;
+tot:= tot + exp;
+select fund_given into exp from funds2 where sid=:new.sid;
+dbms_output.put_line(exp||'    '||tot);
+if(exp<tot) then
+RAISE_APPLICATION_ERROR(-20004,'Maximum fund limit reached..'); 
+end if;
+END; @@
+DELIMITER ; 
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure
+most_paid_teacher(s_id IN NUMBER)
+iS
+n teachers%rowtype;
+BEGIN
+select * into n from teachers where sid = s_id and salary =(select max(salary) from teachers where sid=s_id);
+DBMS_OUTPUT.PUT_LINE('teacher Id: '||n.tid);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher name: '||n.tname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher post: '||n.post);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher salary: '||n.salary);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher address: '||n.address);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher work experience: '||n.work_exp);
+DBMS_OUTPUT.PUT_LINE('');
+
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('School not found for given querey..');
+
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure
+mor_dan_2
+is
+cursor c1 is
+select count(name) as child_no,fname,address from child group by fname,address order by count(name); 
+n number(1);
+begin
+n:=0;
+for p in c1
+loop
+if(p.child_no>2) then
+
+n:=1;
+dbms_output.put_line('father name'||p.fname);
+dbms_output.put_line('');
+dbms_output.put_line('address'||p.address);
+dbms_output.put_line('');
+dbms_output.put_line('no of children'||p.child_no);
+dbms_output.put_line('-------------------');
+dbms_output.put_line('');
+end if;
+end loop;
+if (n=0) then
+dbms_output.put_line('NO such family found!!!');
+end if;
+end; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.min_age
+BEFORE INSERT ON student
+FOR EACH ROW
+declare
+ag number(2);
+begin
+select age into ag from child where name=:new.name and fname=:new.fname and address=:new.address;
+if(ag < 3) then
+RAISE_APPLICATION_ERROR(-20000,'age should be greater than 3'); 
+end if;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.max_sal
+BEFORE INSERT ON family
+FOR EACH ROW
+begin
+if(:new.income>2000) then
+RAISE_APPLICATION_ERROR(-20001,'family above poverty line'); 
+end if;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.max_fund
+BEFORE INSERT ON funds2
+FOR EACH ROW
+declare
+tot number(8,2);
+tmoney number(8,2);
+begin
+select sum(fund_given) into tot from funds2 where did=:new.did;
+tot := tot+ :new.fund_given;
+select money into tmoney from funds where did=:new.did;
+if(tot > tmoney) then
+RAISE_APPLICATION_ERROR(-20002,'fund limit reached'); 
+end if;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.expenditr
+BEFORE INSERT ON funds2
+FOR EACH ROW
+declare
+tot number(8,2);
+begin
+select sum(salary) into tot from teachers where sid=:new.sid;
+tot:= tot + :new.expenditure;
+if(:new.fund_given<tot) then
+RAISE_APPLICATION_ERROR(-20003,'itne paise me itna ni milea :D'); 
+end if;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE PROCEDURE PROJECT.display_date(d1 child.dob %TYPE,d2 child.dob %TYPE)
+AS
+CURSOR abc IS
+(SELECT Name,dob
+FROM child
+WHERE dob>d1
+AND dob<d2
+);
+n number(1);
+temp abc %ROWTYPE;
+
+BEGIN
+n:=0;
+FOR temp IN abc LOOP
+n:=1;
+DBMS_OUTPUT.PUT_LINE( 'Name:' || temp.name || '  Date of Birth:' || temp.dob);
+END LOOP;
+if n=0 then
+DBMS_OUTPUT.PUT_LINE( 'NO DATA FOUND!!!');
+end if;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.del_school
+BEFORE DELETE ON school
+FOR EACH ROW
+when(old.sid is not null)
+begin
+delete from student where sid=:old.sid;
+delete from funds2 where sid=:old.sid;
+delete from teachers where sid=:old.sid;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.del_family
+BEFORE DELETE ON family
+FOR EACH ROW
+begin
+delete from student where fname=:old.fname and address=:old.address;
+delete from child where fname=:old.fname and address=:old.address;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.del_district
+BEFORE DELETE ON map
+FOR EACH ROW
+when(old.did is not null)
+begin
+delete from school where did=:old.did;
+delete from funds where did=:old.did;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE TRIGGER PROJECT.child_age
+    BEFORE INSERT OR UPDATE ON child
+    FOR EACH ROW
+BEGIN
+    IF (:NEW.dob<SYSDATE) THEN
+        :NEW.age := floor((sysdate-:NEW.dob)/365);
+    ELSE
+    RAISE_APPLICATION_ERROR(-20005,'dob must be before'||sysdate);
+    END IF;
+END; @@
+DELIMITER ; 
+
+
+
+
+
+
+
+
+DELIMITER @@
+CREATE OR REPLACE procedure PROJECT."BEKAAR_SCHOOLS"
+is
+cursor c1 is
+select sid, tseats, sname from school;
+n number(4);
+x number(4);
+begin
+for a in c1
+loop
+n:=tot_stu_school(a.sid);
+x:=(a.tseats);
+x:=x/3;
+if(n <= x) then
+dbms_output.put_line('school ID :'||a.sid);
+dbms_output.put_line('');
+dbms_output.put_line('school name :'||a.sname);
+dbms_output.put_line('');
+dbms_output.put_line('Total seats :'||a.tseats);
+dbms_output.put_line('--------------------');
+dbms_output.put_line('');
+end if;
+end loop; 
+end; @@
+DELIMITER ;

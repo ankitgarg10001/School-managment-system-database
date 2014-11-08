@@ -1,0 +1,5 @@
+
+insert into map values('Rajasthan','Ajmer',201);
+insert into map values('Rajasthan','Udaipur',202);
+insert into map values('Rajasthan','Bikaner',203);
+insert into map values('Rajasthan','Jodhpur',204);

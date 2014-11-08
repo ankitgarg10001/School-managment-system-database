@@ -1,0 +1,31 @@
+
+insert into teachers values('jay singh rathore',1350,'Principal',10000,1231,'c12,near railway station,bhim',10);
+insert into teachers values('rajiv singh',1351,'Principal',9000,1232,'a-1,sabji mandi ke pass nasirabad',12);
+insert into teachers values('prateek gupta',1352,'Principal',9000,1233,'G1 bus stand ke pass kekri',15);
+insert into teachers values('amit mishra',1353,'Principal',8000,1234,'mishra niwas maheswary nagar,mertha',13);
+
+insert into teachers values('apoorv agarwal',1354,'Principal',10000,1235,'j2,jawahar nagar,dudu',14);
+insert into teachers values('mayank meena',1355,'Principal',8000,1236,'k9,bus stand ke pass,sitapur',15);
+insert into teachers values('ajay singh',1356,'Principal',8000,1237,'m2 mi road fatehpur',10);
+insert into teachers values('veer vijay singh',1357,'Principal',10000,1238,'h1,nh12 ke pass,bilal',5);
+
+insert into teachers values('mayank panday',1250,'Senior Teacher',10000,1231,'f76,rajiv colony,bhim',15);
+insert into teachers values('Siddarth chaturvedi',1251,'JUnior Teacher',5000,1231,'c7,amar coly nasirabad',7);
+insert into teachers values('Ram singh',1253,'Senior Teacher',8000,1232,'k89,jagadamba road,kekri',13);
+insert into teachers values('Kishan lal',1254,'Junior Teacher',6000,1232,'a-1 hanuman colony,mertha',4);
+
+insert into teachers values('Vijay Maliya',1256,'Senior Teacher',7000,1233,'s9 muslim colony,dudu',12);
+insert into teachers values('Mukesh Ambani',1257,'Junior Teacher',6000,1233,'maliya niwas,jain colony,sitapur',6);
+
+insert into teachers values('Anil Ambani',1259,'Senior Teacher',6000,1234,'Ambani house,kachhari road,fatehpur',17 );
+insert into teachers values('Mahendra singh',1260,'Junior Teacher',5000,1234,'d1 petrol pump ke pass,bilal',2);
+
+insert into teachers values('abhijeet kumar',1262,'Senior Teacher',7000,1235,'c5 city road,handvi',17);
+insert into teachers values('praveer verma',1263,'Junior Teacher',6000,1235,'f3 shyam nagar,nasirabad',4);
+insert into teachers values('Yogesh vijay',1252,'Senior Teacher',7000,1236,'vijay niwas,sarita vihar,kekri',12);
+insert into teachers values('Yashvardhan ',1255,'Junior Teacher',6000,1236,'f6,kalia colony,mertha',4);
+insert into teachers values('Ratan tata',1258,'Senior Teacher',7000,1237,'tata niwas,jeevan nagar,dudu',13);
+insert into teachers values('Amit sana',1261,'Junior Teacher',6000,1237,'s8,railway station ke pass,sitapur',5);
+
+insert into teachers values('abhay gupta',1264,'Senior Teacher',5000,1238,'h4,near bus stand,bilal',15);
+insert into teachers values('mayank khullar',1265,'Junior Teacher',5000,1238,'maya niwas kachari road,handvi',6);

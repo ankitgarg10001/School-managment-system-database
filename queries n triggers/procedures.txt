@@ -1,0 +1,477 @@
+
+1-> Create a  procedure including an exception handling to find the total number of seats offered in school abc.
+
+
+create or replace procedure
+q_2(s_id in number) is
+e1 exception;
+cursor c is
+select sname, tseats from school where sid=s_id;
+cnt number(1);
+begin
+cnt:=0;
+for cc in c
+loop
+if (cc.tseats > 0) then
+cnt:=1;
+dbms_output.put_line('Total seats in school '||cc.sname||' are '||cc.tseats);
+end if;
+end loop;
+if (cnt=0) then
+raise e1;
+end if;
+exception
+when e1 then
+dbms_output.put_line('NO school found with sid: '|| s_id);
+end;
+/
+
+
+select sid from school order by sid;
+
+
+declare
+s_id number(4);
+begin
+s_id:=&s_id;
+q_2(s_id);
+end;
+/
+
+
+
+
+
+2->Create a procedure that displays the schools of any district along with the district name.
+
+create or replace procedure q_6 is
+cursor c is select * from map;
+cc c%rowtype;
+cursor d is select * from school;
+dd  d%rowtype;
+e1 exception;
+begin
+for cc in c
+loop
+for dd in d
+loop
+if cc.did=dd.did   
+then
+if dd.sname='' then raise e1; 
+end if;
+dbms_output.put_line(' name : '||cc.district||' resources : '||dd.sname);
+end if;
+end loop;
+end loop;
+exception
+when e1 then dbms_output.put_line(' wrong input..pls enter the name of the school ');
+end;
+/
+
+
+begin
+q_6;
+end;
+/
+
+
+3-> procedure to take father's name as an argument and show details of all the children
+
+create or replace procedure q7( nme in varchar2 )
+is
+cursor c is select * from child where fname=nme;
+begin
+for cc in c
+loop
+dbms_output.put_line('child name: '|| cc.name);
+dbms_output.put_line('');
+dbms_output.put_line('child age: '|| cc.age);
+dbms_output.put_line('');
+dbms_output.put_line('child dob: '|| cc.dob);
+dbms_output.put_line('');
+dbms_output.put_line('child sex: '|| cc.sex);
+dbms_output.put_line('');
+dbms_output.put_line('-----------------------');
+dbms_output.put_line('');
+end loop;
+end;
+/
+
+
+
+select distinct fname from family order by fname;
+
+
+declare
+inf varchar2(20);
+begin
+inf:='&inf';
+q7(inf);
+end;
+/
+
+4-> Create a procedure that takes the district name as input and prints the funds??.
+
+create or replace
+procedure q_8 (n in varchar2) is
+cursor c1 is
+select did from map where district=n;
+x funds%rowtype;
+no number(1);
+begin
+no:=0;
+for p in c1
+loop
+select * into x from funds where did=p.did;
+no:=1;
+dbms_output.put_line('District name: '|| n);
+dbms_output.put_line('');
+dbms_output.put_line('District id: '|| x.did);
+dbms_output.put_line('');
+dbms_output.put_line('Money given to district: '||x.money);
+dbms_output.put_line('');
+dbms_output.put_line('no of schools in district: '||x.nos);
+dbms_output.put_line('');
+dbms_output.put_line('-----------------------');
+dbms_output.put_line('');
+end loop;
+if n=0 then
+dbms_output.put_line('NO SUCH DISTRICT FOUND');
+end if;
+end;
+/
+
+
+select distinct district from map order by district;
+
+declare
+dist_name varchar2(20);
+begin
+dist_name:='&dist_name';
+q_8(dist_name);
+end;
+/
+
+
+
+
+5->Create a procedure that displays the funds given to that district and also the expenditure of that corresponding district.(use exception if necessary)
+
+create or replace procedure
+q_9 (d_name varchar2) is
+
+cursor c is
+select * from map where district=d_name;
+cc c%rowtype;
+
+cursor d is select * from funds2;
+dd d%rowtype;
+
+e1 exception;
+cntr number(1);
+begin
+cntr:=0;
+for cc in c
+loop
+if cc.district=d_name
+then
+for dd in d
+loop
+if dd.did=cc.did
+then	
+cntr:=1;
+dbms_output.put_line('The district '||d_name||' Has a given funds of  '||dd.fund_given||' the expenditure is  '||dd.expenditure);
+end if;
+end loop;
+end if;
+end loop;
+if cntr=0
+then raise e1;
+end if;
+
+exception
+when e1
+then
+dbms_output.put_line('Nothing to display');
+end;
+/
+
+
+select distinct district from map order by district;
+
+declare
+dist_name varchar2(20);
+begin
+dist_name:='&dist_name';
+q_9(dist_name);
+end;
+/
+
+
+6->student details
+
+create or replace procedure stu_det(no in number)
+AS
+cursor c1 is
+select st.id, st.name, st.fname, c.dob, c.sex, c.age, s.sname, st.class
+from student st, child c, school s
+where st.sid=s.sid and st.name=c.name and st.fname=c.fname
+and st.id=no;
+stu_nfound exception;
+n number(1);
+BEGIN
+n:=0;
+for p in c1
+LOOP
+n:=1;
+DBMS_OUTPUT.PUT_LINE('Student Id: '||p.id);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student name: '||p.name);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student father name: '||p.fname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student dob: '||p.dob);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student sex: '||p.sex);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student age: '||p.age);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student school name: '||p.sname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Student class: '||p.class);
+DBMS_OUTPUT.PUT_LINE('');
+end loop;
+
+if n=0 then
+raise stu_nfound;
+end if;
+exception
+when stu_nfound then
+dbms_output.put_line('no student with given id found');
+END;
+/
+
+declare
+no number(4);
+
+begin
+no:=&no;
+stu_det(no);
+end;
+/
+7->school details
+
+create or replace procedure school_det(no number)
+IS
+cursor c1 is
+select s.sid, s.sname, s.pname, d.state, d.district
+from map d, school s
+where d.did=s.did
+and s.sid=no;
+tstu number;
+ttech number;
+fgiven number;
+BEGIN
+select count(*) into tstu from student where sid=no;
+select count(*)into ttech from teachers where sid=no;
+select fund_given into fgiven from funds2 where sid=no;
+for p in c1
+LOOP
+DBMS_OUTPUT.PUT_LINE('School Id: '||p.sid);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School name: '||p.sname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School principal name: '||p.pname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School state: '||p.state);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('School district: '||p.district);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('total students in school: '||tstu);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('total teachers in school: '||ttech);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('total funds given to school: '||fgiven);
+DBMS_OUTPUT.PUT_LINE('');
+end loop;
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('NO school found with sid: '||no);
+END;
+/
+
+declare
+no number(4);
+
+begin
+no:=&no;
+school_det(no);
+end;
+/
+
+8->Teacher with max salary in a school
+DONE
+
+
+create or replace procedure
+most_paid_teacher(s_id IN NUMBER)
+iS
+n teachers%rowtype;
+BEGIN
+select * into n from teachers where sid = s_id and salary =(select max(salary) from teachers where sid=s_id);
+DBMS_OUTPUT.PUT_LINE('teacher Id: '||n.tid);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher name: '||n.tname);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher post: '||n.post);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher salary: '||n.salary);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher address: '||n.address);
+DBMS_OUTPUT.PUT_LINE('');
+DBMS_OUTPUT.PUT_LINE('Teacher work experience: '||n.work_exp);
+DBMS_OUTPUT.PUT_LINE('');
+
+EXCEPTION
+when no_data_found then
+dbms_output.put_line('School not found for given querey..');
+
+END;
+/
+
+
+declare
+school_id number(4);
+begin
+
+school_id:=&school_id;
+dbms_output.put_line('details of Teachers with max salary in school with sid '||school_id||' are :');
+dbms_output.put_line('');
+most_paid_teacher(school_id);
+end;
+/
+
+
+9->schools having students less than 1/3 of total seats available(TO CHOOSE AREAS WITH USELESS SCHOOLS)
+
+
+
+create or replace procedure
+bekaar_schools
+is
+cursor c1 is
+select sid, tseats, sname from school;
+n number(4);
+x number(4);
+begin
+for a in c1
+loop
+n:=tot_stu_school(a.sid);
+x:=(a.tseats);
+x:=x/3;
+if(n <= x) then
+dbms_output.put_line('school ID :'||a.sid);
+dbms_output.put_line('');
+dbms_output.put_line('school name :'||a.sname);
+dbms_output.put_line('');
+dbms_output.put_line('Total seats :'||a.tseats);
+dbms_output.put_line('--------------------');
+dbms_output.put_line('');
+end if;
+end loop;
+END;
+/
+
+begin
+dbms_output.put_line('SCHOOLS with no of children < total seats are:');
+dbms_output.put_line('');
+dbms_output.put_line('');
+dbms_output.put_line('');
+bekaar_schools;
+end;
+/
+
+
+
+
+10->families with more than 2 children
+create or replace procedure
+mor_dan_2
+is
+cursor c1 is
+select count(name) as child_no,fname,address from child group by fname,address order by count(name); 
+n number(1);
+begin
+n:=0;
+for p in c1
+loop
+if(p.child_no>2) then
+
+n:=1;
+dbms_output.put_line('father name'||p.fname);
+dbms_output.put_line('');
+dbms_output.put_line('address'||p.address);
+dbms_output.put_line('');
+dbms_output.put_line('no of children'||p.child_no);
+dbms_output.put_line('-------------------');
+dbms_output.put_line('');
+end if;
+end loop;
+if (n=0) then
+dbms_output.put_line('NO such family found!!!');
+end if;
+end;
+/
+
+begin
+dbms_output.put_line('Families with more than 2 children are:');
+dbms_output.put_line('');
+dbms_output.put_line('');
+dbms_output.put_line('');
+mor_dan_2;
+end;
+/
+
+
+
+
+11->-- Procedure to Display all Employees born Between two Dates.
+
+CREATE OR REPLACE PROCEDURE 
+display_date(d1 child.dob %TYPE,d2 child.dob %TYPE)
+AS
+CURSOR abc IS
+(SELECT Name,dob
+FROM child
+WHERE dob>d1
+AND dob<d2
+);
+n number(1);
+temp abc %ROWTYPE;
+
+BEGIN
+n:=0;
+FOR temp IN abc LOOP
+n:=1;
+DBMS_OUTPUT.PUT_LINE( 'Name:' || temp.name || '  Date of Birth:' || temp.dob);
+END LOOP;
+if n=0 then
+DBMS_OUTPUT.PUT_LINE( 'NO DATA FOUND!!!');
+end if;
+END;
+/
+
+
+DECLARE
+d1 DATE;
+d2 DATE;
+BEGIN
+d1:='&d1';
+d2:='&d2';
+display_date(d1,d2);
+END;
+/
+
+
+
+

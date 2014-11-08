@@ -1,0 +1,5 @@
+
+insert into funds values(201,100000,2);
+insert into funds values(202,50000,1);
+insert into funds values(203,150000,3);
+insert into funds values(204,100000,2);
